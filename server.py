@@ -115,7 +115,7 @@ class Server(object):
         while b'\n' not in received:
             received += self.client_connection.recv(16)
 
-        self.input_buffer = received.decode().strip()
+        self.input_buffer = received.decode()
 
     def move(self, argument):
         """
@@ -204,8 +204,6 @@ class Server(object):
         received = self.input_buffer.split(" ")
         command = received.pop(0)
         arguments = " ".join(received)
-        print("received: {} command: {} arguments: {}".format(received, command, arguments))
-
         {
             'quit': self.quit,
             'move': self.move,
